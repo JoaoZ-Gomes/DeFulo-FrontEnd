@@ -46,13 +46,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       // TODO: Navegar para dashboard
       // context.go('/dashboard');
     } catch (e) {
-      setState(() {
-        _errorMessage = 'Falha no login: $e';
-      });
+      if (mounted) {
+        setState(() {
+          _errorMessage = 'Falha no login: $e';
+        });
+      }
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 

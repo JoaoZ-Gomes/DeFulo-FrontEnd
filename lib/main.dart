@@ -7,6 +7,7 @@ import 'features/dashboard/screens/dashboard_screen.dart';
 import 'features/fazenda/screens/fazendas_screen.dart';
 import 'features/talhao/screens/talhoes_screen.dart';
 import 'features/evento/screens/eventos_screen.dart';
+import 'features/usuario/screens/perfil_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -191,6 +192,11 @@ class _MainTabScreenState extends State<MainTabScreen> {
             activeIcon: Icon(Icons.event),
             label: 'Eventos',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outlined),
+            activeIcon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
         ],
       ),
     );
@@ -202,6 +208,7 @@ class _MainTabScreenState extends State<MainTabScreen> {
       1 => const FazendasScreen(),
       2 => const TalhoesScreen(),
       3 => const EventosScreen(),
+      4 => const PerfilScreen(),
       _ => const DashboardScreen(),
     };
   }

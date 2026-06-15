@@ -60,20 +60,7 @@ class UsuarioRepository extends OfflineFirstRepository<UsuarioLocal> {
     return super.save(entity);
   }
 
-  @override
-  Future<UsuarioLocal?> findById(dynamic id) async {
-    return super.findById(id);
-  }
-
-  @override
-  Future<List<UsuarioLocal>> findAll() async {
-    return super.findAll();
-  }
-
-  @override
-  Future<bool> delete(dynamic id) async {
-    return super.delete(id);
-  }
+  // Custom methods would go here
 
   /// Encontrar usuário por email
   Future<UsuarioLocal?> findByEmail(String email) async {

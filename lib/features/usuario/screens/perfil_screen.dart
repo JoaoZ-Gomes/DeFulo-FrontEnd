@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/common_widgets.dart';
+import '../../../core/services/auth_service.dart';
 
 /// Tela de Perfil do Usuário
-class PerfilScreen extends StatelessWidget {
+class PerfilScreen extends ConsumerWidget {
   const PerfilScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authStateProvider);
+    final user = authState.value;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Perfil'),
@@ -59,18 +63,18 @@ class PerfilScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'João Silva Santos',
-                      style: TextStyle(
+                    Text(
+                      user?.nome ?? 'João Silva Santos',
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 4),
-                    const Text(
-                      'Produtor Rural',
-                      style: TextStyle(
+                    Text(
+                      user?.role == 'engenheiro' ? 'Engenheiro Agrônomo' : 'Produtor Rural',
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.white70,
                       ),
@@ -101,7 +105,7 @@ class PerfilScreen extends StatelessWidget {
                       children: [
                         InfoTile(
                           label: 'Email',
-                          value: 'joao.silva@email.com',
+                          value: user?.email ?? 'joao.silva@email.com',
                           icon: Icons.email_outlined,
                           iconColor: AppTheme.primaryGreen,
                         ),
@@ -256,7 +260,7 @@ class PerfilScreen extends StatelessWidget {
                         backgroundColor: AppTheme.alertRed,
                       ),
                       onPressed: () {
-                        // TODO: Implementar logout
+                        ref.read(authServiceProvider).logout();
                       },
                       child: const Text('Sair da Conta'),
                     ),

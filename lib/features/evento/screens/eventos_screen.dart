@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/common_widgets.dart';
 import '../model/evento_repository.dart';
+import 'novo_evento_screen.dart';
 
 /// Tela de Eventos
 class EventosScreen extends ConsumerStatefulWidget {
@@ -78,7 +79,11 @@ class _EventosScreenState extends ConsumerState<EventosScreen> {
             message: 'Comece registrando o primeiro evento de manejo',
             actionLabel: 'Criar Evento',
             onAction: () {
-              // TODO: Abrir dialog para criar evento
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const NovoEventoScreen(),
+                ),
+              );
             },
           )
         : ListView.builder(
@@ -91,7 +96,11 @@ class _EventosScreenState extends ConsumerState<EventosScreen> {
           ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO: Abrir dialog para criar evento
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const NovoEventoScreen(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),

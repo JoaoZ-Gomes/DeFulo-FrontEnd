@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:defulo/core/theme/app_theme.dart';
+import 'relatorios_screen.dart';
+import '../../usuario/screens/perfil_screen.dart';
 
 /// Dashboard principal
 class DashboardScreen extends ConsumerStatefulWidget {
@@ -27,7 +29,11 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           IconButton(
             icon: const Icon(Icons.person_outlined),
             onPressed: () {
-              // TODO: Navegar para perfil
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const PerfilScreen(),
+                ),
+              );
             },
           ),
         ],
